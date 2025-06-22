@@ -1,3 +1,5 @@
+from gevent import monkey
+monkey.patch_all()
 from flask import Flask, render_template, request, jsonify
 from flask_socketio import SocketIO
 import paho.mqtt.client as mqtt
@@ -10,7 +12,7 @@ import sqlite3  # Nueva librería para persistencia
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'mi_clave_secreta')  # Mejora seguridad
-socketio = SocketIO(app)
+socketio = SocketIO(app, async_mode='gevent')
 
 # Base de datos para persistencia
 def init_db():
