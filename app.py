@@ -12,7 +12,7 @@ import sqlite3  # Nueva librería para persistencia
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'mi_clave_secreta')  # Mejora seguridad
-socketio = SocketIO(app, async_mode='gevent')
+socketio = SocketIO(app)
 
 # Base de datos para persistencia
 def init_db():
